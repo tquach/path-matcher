@@ -13,6 +13,7 @@ var testdata = []string{
 	"0\n0",
 	"1\na,*,c\n0",
 	"1\na,b,*\n1\na/b/d",
+	"1\nüñíçódé,*,*\n1\na/s,s",
 }
 
 func (suite *ScannerTestSuite) TestScanInputFile(c *C) {

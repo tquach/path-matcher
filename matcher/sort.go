@@ -1,3 +1,4 @@
+// This implementation is based off Go standard library multi-key sort example.
 package matcher
 
 import (
@@ -5,9 +6,10 @@ import (
 	"strings"
 )
 
+// A function definition type for determining how to sort
 type sortFn func(p1, p2 *Pattern) bool
 
-// Implement the sort.Interface
+// A struct that will implement the sort.Interface
 type patternSorter struct {
 	patterns []Pattern
 	sortFns  []sortFn
@@ -40,11 +42,13 @@ func (s *patternSorter) Less(i, j int) bool {
 	return s.sortFns[k](p, q)
 }
 
+// Sort a slice of Pattern objects. Delegates to the sort.Sort function.
 func (as *patternSorter) Sort(patterns []Pattern) {
 	as.patterns = patterns
 	sort.Sort(as)
 }
 
+// A function that applies a variadic list of closures and returns a sorter.
 func OrderedBy(sortFn ...sortFn) *patternSorter {
 	return &patternSorter{
 		sortFns: sortFn,
@@ -56,6 +60,7 @@ var wildcards = func(p1, p2 *Pattern) bool {
 	return strings.Count(p1.Raw, "*") < strings.Count(p2.Raw, "*")
 }
 
+// Sort by the right-most wildcard using the strings.Index function
 var rightMostWildcard = func(p1, p2 *Pattern) bool {
 	return strings.Index(p1.Raw, "*") > strings.Index(p2.Raw, "*")
 }

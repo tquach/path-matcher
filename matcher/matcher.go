@@ -1,4 +1,3 @@
-// Package matcher contains the matching algorithm
 package matcher
 
 import "strings"
@@ -46,6 +45,7 @@ func NewPattern(pattern string) Pattern {
 	return Pattern{strings.Split(pattern, ","), pattern}
 }
 
+// Create a new PatternPathMatcher instance with a slice of patterns
 func NewPatternPathMatcher(patternList []string) PatternPathMatcher {
 	var patterns []Pattern
 
@@ -58,6 +58,8 @@ func NewPatternPathMatcher(patternList []string) PatternPathMatcher {
 // Find the best matching pattern given the path.
 func (m *PatternPathMatcher) BestMatch(str string) string {
 	var matches []Pattern
+
+	// Calculate all matches
 	for _, pattern := range m.Patterns {
 		// If there is an error, the value of matched will be false
 		if pattern.Matches(str) {
