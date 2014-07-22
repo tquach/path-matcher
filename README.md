@@ -43,5 +43,3 @@ Can we do better than O(mn)? Some ideas for improvements include doing preproces
 We can also group together patterns into buckets and when matching paths, we can know immediately if there is a match if there is no bucket that corresponds to the first element in the path.
 
 Most of the improvements require some kind of preprocessing and shortcut to avoid having to do further comparisons.
-
-This implementation is based off Go standard library multi-key sort example.
