@@ -8,6 +8,8 @@ type Pattern struct {
 	Raw    string
 }
 
+// Matches a given string against itself. This algorithm is simple and straightforward
+// using an exact match or a single wildcard match.
 func (p *Pattern) Matches(str string) bool {
 	// Trim the path of leading / trailing slashes and spaces
 	elems := strings.Split(strings.Trim(str, "/ "), "/")
@@ -21,6 +23,7 @@ func (p *Pattern) Matches(str string) bool {
 			return false
 		}
 
+		// Naive implementation for matching
 		switch expr {
 		case val:
 		case "*":
@@ -38,6 +41,7 @@ type PatternPathMatcher struct {
 	Patterns []Pattern
 }
 
+// Constructor factory for creating a new Pattern instance. Also splits the pattern against any fields
 func NewPattern(pattern string) Pattern {
 	return Pattern{strings.Split(pattern, ","), pattern}
 }

@@ -24,3 +24,4 @@ _testmain.go
 *.DS
 
 coverage.out
+path-matcher
