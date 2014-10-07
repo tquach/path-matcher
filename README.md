@@ -22,7 +22,7 @@ Documentation is done through [go docs](http://godoc.org/code.google.com/p/go.to
 godoc -http=:6060
 ```
 
-Open a browser to http://localhost:6060/pkg/github.com/tantastik/path-matcher/matcher/
+Open a browser to http://localhost:6060/pkg/github.com/tquach/path-matcher/matcher/
 
 ## Analysis
 
